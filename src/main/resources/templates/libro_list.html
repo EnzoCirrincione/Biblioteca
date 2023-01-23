@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div class="container m-5">
+           <table class="table table-dark">
+               <thead>
+                     <tr>
+                         <th scope="col">Id</th>
+                         <th scope="col">Titulo</th>
+                         <th scope="col">Ejemplares</th>
+                         <th scope="col">Autor</th>
+                         <th scope="col">Editorial</th>
+                     </tr>
+               </thead>
+               <tbody th:each="libro : ${libros}">
+                    <tr>
+                        <th scope="row" th:text="${libro.isbn}"></th>
+                        <td th:text="${libro.titulo}"></td>
+                        <td th:text="${libro.ejemplares}"></td>
+                        <td th:text="${libro.autor.nombre}"></td>
+                        <td th:text="${libro.editorial.nombre}"></td>
+
+                    </tr>
+               </tbody>
+           </table>
+
+
+      </div>
+</body>
+</html>

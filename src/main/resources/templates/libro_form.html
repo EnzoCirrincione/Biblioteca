@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="IS0-8859-1">
+    <title>Registro de Libros</title>
+
+</head>
+<body>
+      <div class="container-fluid m-5 contenedor">
+
+          <form class="formulario" action="/libro/registro" method="POST">
+
+              <div class="form-group my-3">
+                  <label  class="mb-2">Cargar Libro</label>
+                  <input type="number" class="form-control" name="isbn" placeholder="ISBN">
+
+              </div>
+
+              <div class="form-group my-3">
+                  <input type="text" class="form-control" name="titulo" placeholder="Titulo de Libro">
+              </div>
+
+              <div class="form-group my-3">
+                  <input type="number" class="form-control" name="ejemplares" placeholder="Cantidad de Ejemplares">
+              </div>
+
+              <div  class="form-group my-3">
+
+                  <select name="idAutor">
+                      <option>Seleccionar Autor</option>
+                      <option th:each="autor : ${autores}"
+                              th:value="${autor.id}"
+                              th:text="${autor.nombre}"/> /*vamos a iterar las lista autoes a traves de una auxiliar que se llama autor y a si accesader a sus atributos */
+                  </select>
+
+              </div>
+
+              <div class="form-group my-3">
+
+                  <select name="idEditorial">
+                      <option>Seleccionar Editorial</option>
+                      <option th:each="editorial : ${editoriales}"
+                              th:value="${editorial.id}"
+                              th:text="${editorial.nombre}"/>
+                  </select>
+
+              </div>
+
+              <div th:if="${error !=null}" class="card text-white bg-danger mb-3 mensajeError"> /*si existe un modelo que inyecta un error vamos a mostrar el div*/
+                  <div >
+                      <h5 class="card-title">Error</h5>
+                      <p class="card-text" th:text="${error}"></p> /* ponemos el nombre de la llave que trae el texto*/
+                  </div>
+              </div>
+
+              <div  th:if="${exito !=null}" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                  <div class="card-body">
+                      <h5 class="card-title">Exito</h5>
+                      <p class="card-text"th:text="${exito}"></p>
+                  </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary"> Cargar Libro </button>
+          </form>
+      </div>
+</body>
+</html>
